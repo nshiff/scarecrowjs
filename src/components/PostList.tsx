@@ -1,19 +1,10 @@
 import { Link } from "react-router";
+import { useSelector } from "react-redux";
+import type { RootState } from "../store/store";
 
-interface BlogPost {
-  id: number;
-  title: string;
-  content: string;
-  date: string;
-  readingTime: string;
-  summary: string;
-}
+export function PostList() {
+  const posts = useSelector((state: RootState) => state.posts.posts);
 
-interface PostListProps {
-  posts: BlogPost[];
-}
-
-export function PostList({ posts }: PostListProps) {
   return (
     <div>
       {posts.map((post) => (

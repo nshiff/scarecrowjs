@@ -1,20 +1,10 @@
 import { useParams, Link } from "react-router";
+import { useSelector } from "react-redux";
+import type { RootState } from "../store/store";
 
-interface BlogPost {
-  id: number;
-  title: string;
-  content: string;
-  date: string;
-  readingTime: string;
-  summary: string;
-}
-
-interface PostViewProps {
-  posts: BlogPost[];
-}
-
-export function PostView({ posts }: PostViewProps) {
+export function PostView() {
   const { id } = useParams();
+  const posts = useSelector((state: RootState) => state.posts.posts);
   const post = posts.find((p) => p.id === Number(id));
 
   if (!post) {
